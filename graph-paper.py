@@ -15,7 +15,7 @@ showfig = False
 
 # Number of decades for log scale
 # set to zero for linear scale
-xdecades = 0
+xdecades = 3
 ydecades = 0
 
 # Output filename
@@ -27,7 +27,7 @@ filename="Papier%s"
 extension=".pdf"
 
 # Paper and figure
-landscape   = False  # if true, swap width and height
+landscape   = True  # if true, swap width and height
 centimeters = True  # if false, length unit is inch (matplotlib defaut)
 paperwidth  = 21.0
 paperheight = 29.7
