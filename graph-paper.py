@@ -15,12 +15,15 @@ showfig = False
 
 # Number of decades for log scale
 # set to zero for linear scale
-xdecades = 4
+xdecades = 3
 ydecades = 0
 
 # Output filename
+# One cas use wildcards :
+#   %x and %y are replaced by the value of xdecades and ydecades
+#   %s is replaced by '_semilog_n-decades' or '_log_n-m-decades' (or nothing with linear scale)
 save = True
-filename="Papier"
+filename="Papier%s"
 extension=".pdf"
 
 # Paper and figure
@@ -68,10 +71,8 @@ if (xdecades > 0):
     xmin = 10
     xmax = xmin*10**xdecades
     xscale('log')
-    filename += "-"+str(xdecades)+"log"
     format_log_axis(ax.xaxis)
 else:
-    filename += "-lin"
     format_lin_axis(ax.xaxis)
 
 # y axis
@@ -81,10 +82,8 @@ if (ydecades > 0):
     ymin = 10
     ymax = ymin*10**ydecades
     yscale('log')
-    filename += "-"+str(ydecades)+"log"
     format_log_axis(ax.yaxis)
 else:
-    filename += "-lin"
     format_lin_axis(ax.yaxis)
 
 # x and y scales
@@ -113,6 +112,16 @@ fig.subplots_adjust(left   = leftmargin / paperwidth,
 ### Show and save
 
 if save:
+    if xdecades == 0 and ydecades == 0:
+        filename = filename.replace('%s',"")
+    elif xdecades != 0 and ydecades != 0:
+        filename = filename.replace('%s',"_log_%x-%y-decades")
+    elif xdecades + ydecades == 1:
+        filename = filename.replace('%s',"_semilog_1-decade")
+    else :
+        filename = filename.replace('%s',"_semilog_"+str(xdecades+ydecades)+"-decades")
+    filename = filename.replace('%x',str(xdecades))
+    filename = filename.replace('%y',str(ydecades))
     savefig(filename+extension,dpi=600)
     print("File "+filename+extension+" created.")
 
