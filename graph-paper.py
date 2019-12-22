@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 ##############################
-# Graph paper, linear or log scale
-# using python3 and matplotlib
+# Simple script to create graph paper (linear or log scale)
+# with python3 and matplotlib
 # J. Labbé, december 2019
 ##############################
 
@@ -11,15 +11,13 @@ from pylab import *
 
 ### Parameters ===================================
 
-showfig = False
-
 # Number of decades for log scale
 # set to zero for linear scale
 xdecades = 3
 ydecades = 0
 
 # Output filename
-# One cas use wildcards :
+# One can use wildcards :
 #   %x and %y are replaced by the value of xdecades and ydecades
 #   %s is replaced by '_semilog_n-decades' or '_log_n-m-decades' (or nothing with linear scale)
 save = True
@@ -47,7 +45,10 @@ minor_linewidth = 0.25
 minor_color     = 'black'
 minor_alpha     = 0.7
 
-### End of parameters block =====================
+# Whether to call show()
+showfig = False
+
+### End of parameters block ======================
 
 # Axes formatting function
 def format_lin_axis(axis):
