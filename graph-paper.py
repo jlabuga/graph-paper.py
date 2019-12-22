@@ -9,7 +9,7 @@
 # Import everything from matplotlib (numpy is accessible via 'np' alias)
 from pylab import *
 
-### Parameters
+### Parameters ===================================
 
 showfig = False
 
@@ -23,26 +23,19 @@ save = True
 filename="Papier"
 extension=".pdf"
 
-### Paper geometry
+# Paper and figure
+landscape   = True  # if true, swap width and height
+centimeters = True  # if false, length unit is inch (matplotlib defaut)
+paperwidth  = 21.0
+paperheight = 29.7
+figwidth    = 16.0
+figheight   = 24.0
+rightmargin = 2.5
+topmargin   = 2.5
 
-paperwidth  = 29.7 # cm
-paperheight = 21.0 # cm
-figwidth    = 25.0 # cm
-figheight   = 18.0 # cm
-leftmargin  =  (paperwidth - figwidth)/2 # cm
-topmargin   =  (paperheight - figheight)/2 # cm
+### End of parameters block =====================
 
-cm2inch = 1/2.54 # inch per cm
-fig = figure(figsize=(paperwidth*cm2inch,paperheight*cm2inch))
-ax = fig.add_subplot(111)
-
-xmin = 0
-xmax = figwidth
-ymin = 0
-ymax = figheight
-
-### Axes formatting function
-
+# Axes formatting function
 def format_lin_axis(axis):
     axis.set_major_locator(matplotlib.ticker.MultipleLocator(1))
     axis.set_minor_locator(matplotlib.ticker.MultipleLocator(0.1))
@@ -59,9 +52,18 @@ def format_log_axis(axis):
     axis.set_minor_formatter(NullFormatter())
     axis.set_tick_params(labelsize=6,pad=0)
 
-### Set lin or log scale
+# Create figure
+unit = 1/2.54 if centimeters else 1
+if landscape:
+    paperheight, paperwidth = paperwidth, paperheight
+    figheight, figwidth = figwidth, figheight
+    rightmargin, topmargin = topmargin, rightmargin
+fig = figure(figsize=(paperwidth*unit,paperheight*unit))
+ax = fig.add_subplot(111)
 
 # x axis
+xmin = 0
+xmax = figwidth
 if (xdecades > 0):
     xmin = 10
     xmax = xmin*10**xdecades
@@ -73,6 +75,8 @@ else:
     format_lin_axis(ax.xaxis)
 
 # y axis
+ymin = 0
+ymax = figheight
 if (ydecades > 0):
     ymin = 10
     ymax = ymin*10**ydecades
@@ -82,8 +86,6 @@ if (ydecades > 0):
 else:
     filename += "-lin"
     format_lin_axis(ax.yaxis)
-
-### Final configuration
 
 # x and y scales
 xlim(xmin,xmax)
@@ -100,7 +102,7 @@ grid(True, which='major', axis='both',linestyle='-',linewidth=0.5,color="black")
 
 # Margins
 # from https://stackoverflow.com/questions/29400116/using-matplotlib-how-can-i-print-something-actual-size
-rightmargin = paperwidth - figwidth - leftmargin
+leftmargin = paperwidth - figwidth - rightmargin
 bottommargin = paperheight - figheight - topmargin
 fig.subplots_adjust(left   = leftmargin / paperwidth,
                     bottom = bottommargin / paperheight,
