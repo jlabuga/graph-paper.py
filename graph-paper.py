@@ -15,7 +15,7 @@ showfig = False
 
 # Number of decades for log scale
 # set to zero for linear scale
-xdecades = 3
+xdecades = 0
 ydecades = 0
 
 # Output filename
@@ -27,7 +27,7 @@ filename="Papier%s"
 extension=".pdf"
 
 # Paper and figure
-landscape   = True  # if true, swap width and height
+landscape   = False  # if true, swap width and height
 centimeters = True  # if false, length unit is inch (matplotlib defaut)
 paperwidth  = 21.0
 paperheight = 29.7
@@ -35,6 +35,17 @@ figwidth    = 16.0
 figheight   = 24.0
 rightmargin = 2.5
 topmargin   = 2.5
+
+# line styles
+major_linestyle = '-'
+major_linewidth = 0.5
+major_color     = "black"
+major_alpha     = 1.0
+
+minor_linestyle = '-'
+minor_linewidth = 0.25
+minor_color     = 'black'
+minor_alpha     = 0.7
 
 ### End of parameters block =====================
 
@@ -96,8 +107,8 @@ ax.yaxis.set_ticks_position('none')
 
 # grid
 ax.set_axisbelow(True) # grille sous le tracé
-grid(True, which='minor', axis='both',linestyle='-',linewidth=0.25,color="black",alpha=0.7)
-grid(True, which='major', axis='both',linestyle='-',linewidth=0.5,color="black")
+grid(True, which='minor', axis='both',linestyle=minor_linestyle,linewidth=minor_linewidth,color=minor_color,alpha=minor_alpha)
+grid(True, which='major', axis='both',linestyle=major_linestyle,linewidth=major_linewidth,color=major_color,alpha=major_alpha)
 
 # Margins
 # from https://stackoverflow.com/questions/29400116/using-matplotlib-how-can-i-print-something-actual-size
