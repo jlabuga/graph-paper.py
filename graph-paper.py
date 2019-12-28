@@ -21,7 +21,7 @@ ydecades = 0
 #   %x and %y are replaced by the value of xdecades and ydecades
 #   %s is replaced by '_semilog_n-decades' or '_log_n-m-decades' (or nothing with linear scale)
 save = True
-filename="Papier%s"
+filename="Examples/Papier%s"
 extension=".pdf"
 
 # Paper and figure
