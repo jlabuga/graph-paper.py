@@ -41,7 +41,7 @@ extension=".pdf"
 The paper and figure geometries are set by the following variables :
 ```python
 landscape   = True  # if true, swap width and height
-centimeters = True  # if false, length unit is inch (matplotlib defaut)
+centimeters = True  # if false, length unit is inch (matplotlib default)
 paperwidth  = 21.0
 paperheight = 29.7
 figwidth    = 16.0
