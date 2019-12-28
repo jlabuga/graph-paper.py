@@ -1,14 +1,19 @@
 graph-paper.py
 ==============
 
-Simple script to create graph paper (linear or log scale) with `python3` and `matplotlib`. Ones can change the parameters à the beginning of the scripts.
-To run it, run (if `matplotlib` is installed):
+**[→ Version française](LISEZMOI.md)** (link to french readme).
+
+
+Simple script to create graph papers (with linear or log scale) using `python3` 
+and `matplotlib`. Ones can set the parameters à the beginning of the scripts.
+To use it, run (if `matplotlib` is installed):
 ```
 python3 graph-paper.py
 ```
 
-To select log scale, set `xdecade` and `ydecade` at appropriate number of decades. Setting one of these variable to zero means linear scale.
-
+To select log scale, set `xdecade` and `ydecade` at the appropriate number of
+decades. Setting one of these variables to zero means linear scale. Example, for
+semi-log paper with three log modules on the x-axis and a linear y-axis, use :
 ```python
 # Number of decades for log scale
 # set to zero for linear scale
@@ -16,23 +21,24 @@ xdecades = 3
 ydecades = 0
 ```
 
-To create output file, set `save` to `True` :
+The output file is created only if the variable `save` is set to `True` :
 ```python
 save = True
 ```
 
-To set output file name, set `filename` and `extension`. Some widdcards are availlable :
- * `%x` and `%y` are replaced by the value of `xdecades` and `ydecades`
+The output file name is set with `filename` and `extension`. Some widdcards are
+availlable :
+ * `%x` and `%y` are replaced by the value of `xdecades` and `ydecades`.
  * `%s` is replaced by `_semilog_n-decades` or `_log_n-m-decades` (or nothing
    for linear scale).
 
-Example :
+For example :
 ```python
 filename="Papier%s"
 extension=".pdf"
 ```
 
-To set paper and figure geometry, use following variables :
+The paper and figure geometries are set by the following variables :
 ```python
 landscape   = True  # if true, swap width and height
 centimeters = True  # if false, length unit is inch (matplotlib defaut)
@@ -44,7 +50,7 @@ rightmargin = 2.5
 topmargin   = 2.5
 ```
 
-To set minor and major grid line style set the following variables :
+Line style of minor and major grid lines are set by the following variables :
 ```python
 major_linestyle = '-'
 major_linewidth = 0.5
@@ -57,7 +63,7 @@ minor_color     = 'black'
 minor_alpha     = 0.7
 ```
 
-If you want to view the figure, at creation, set `showfig` :
+To show the figure, at the moment of the creation, use :
 ```python
 showfig = True
 ```
